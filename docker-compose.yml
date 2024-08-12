@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  ruby_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - SENDER_EMAIL=${SENDER_EMAIL}
+      - RECIPIENT_EMAIL=${RECIPIENT_EMAIL}
+    ports:
+      - "4567:4567"
+    depends_on:
+      - postfix
+
+  postfix:
+    build:
+      context: .
+      dockerfile: Dockerfile.postfix
+    ports:
+      - "25:25"

@@ -1,11 +1,10 @@
 FROM ruby:latest
 
-# Установка зависимостей
-RUN gem install mail sinatra
+RUN gem install mail sinatra dotenv
 
-# Копирование кода в Docker образ
 WORKDIR /app
 COPY . .
 
-# Запуск приложения
+EXPOSE 4567
+
 CMD ["rackup", "--host", "0.0.0.0"]
