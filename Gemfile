@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'sinatra'
-gem 'mail'
 gem 'dotenv'
+gem 'mail'
 gem 'rack'
 gem 'rackup'
 gem 'redis'
+gem 'sinatra'

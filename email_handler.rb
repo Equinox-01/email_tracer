@@ -1,6 +1,9 @@
+require 'securerandom'
+
 class EmailHandler
   def send(recipient_email)
-    token = TokenGenerator.generate(recipient_email)
+    token = SecureRandom.hex(16)
+    $redis.set(token, recipient_email)
     body = <<-HTML
       <html>
         <body>
