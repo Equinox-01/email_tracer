@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.3'
 
 services:
   ruby_app:
@@ -6,16 +6,11 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      - SENDER_EMAIL=${SENDER_EMAIL}
+      - GMAIL_USERNAME=${GMAIL_USERNAME}
+      - GMAIL_PASSWORD=${GMAIL_PASSWORD}
       - RECIPIENT_EMAIL=${RECIPIENT_EMAIL}
+      - REMOTE_SERVER_IP=${REMOTE_SERVER_IP}
     ports:
       - "4567:4567"
-    depends_on:
-      - postfix
-
-  postfix:
-    build:
-      context: .
-      dockerfile: Dockerfile.postfix
-    ports:
-      - "25:25"
+    volumes:
+      - ./logs:/app/logs
