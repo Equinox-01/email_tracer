@@ -10,7 +10,20 @@ services:
       - GMAIL_PASSWORD=${GMAIL_PASSWORD}
       - RECIPIENT_EMAIL=${RECIPIENT_EMAIL}
       - REMOTE_SERVER_IP=${REMOTE_SERVER_IP}
+      - REDIS_URL=redis://redis:6379/1
     ports:
       - "4567:4567"
     volumes:
       - ./logs:/app/logs
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:
